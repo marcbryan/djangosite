@@ -21,3 +21,5 @@ class Vote(models.Model):
     answer_id = models.ForeignKey(Answer, on_delete=models.CASCADE)
     date_time = models.DateTimeField()
     location = models.CharField(max_length=200)
+    def __str__(self):
+        return self.Answer.choice_text
