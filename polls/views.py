@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import render
 
 from .models import Question
 
@@ -24,4 +25,9 @@ def vote(request, question_id):
 # /exampleList/
 def exampleList(request):
     list = Question.objects.all()
-    return HttpResponse(template.render(list, request))
+    return render(request, "example.html",
+        {
+            "type":"cosas",
+            "elements":list
+        }
+    )
