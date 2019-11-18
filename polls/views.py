@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
 
-from .models import Question
+from .models import Question, Answer
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -31,3 +31,16 @@ def exampleList(request):
             "elements":list
         }
     )
+
+def llista(request):
+    items = None
+    if request.GET.get("qid"):
+        items = Answer.objects.filter(question__id = request.GET["qid"])
+    else:
+        items = Answer.objects.all()
+    return render( request, "example.html",
+                    {
+                        "type":"cosas",
+                        "elements":items
+                    }
+                )
