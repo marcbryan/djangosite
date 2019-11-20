@@ -35,7 +35,7 @@ def exampleList(request):
 def llista(request):
     items = None
     if request.GET.get("qid"):
-        items = Answer.objects.filter(question__id = request.GET["qid"])
+        items = Answer.objects.filter(question_id__id = request.GET["qid"])
     else:
         items = Answer.objects.all()
     return render( request, "example.html",
