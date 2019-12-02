@@ -2,8 +2,8 @@
 {% if error_message %}<p><<strong>{{ error_message }}</strong></p>{% endif %}
 <form action="{% url 'polls:vote' question.id %}" method="post">
 {% csrf_token %}
-{% for answer in question.choice_set.all %}
-  <input type="radio" name="choice" id="answer{{ forloop.counter }}" value="{{ answer.id }}">
+{% for answer in question.answer_set.all %}
+  <input type="radio" name="answer" id="answer{{ forloop.counter }}" value="{{ answer.id }}">
   <label for="answer{{ forloop.counter }}">{{ answer.choice_text }}</label>
 <br>
 {% endfor %}
